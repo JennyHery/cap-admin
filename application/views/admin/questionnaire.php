@@ -86,7 +86,7 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
                             <div class="col-lg-12 mb-4 order-0">
-                                <div class="card" style='height: 500px;overflow-y:auto;'>
+                                <div class="card">
                                     <div class="card-body">
                                         <div class="row">
                                             <?= form_open('mode/enregistrer') ?>
@@ -118,70 +118,70 @@
                                                     <?php endfor ; ?>
                                                 </select>
                                             </div>
-                                            <!-- Icon here -->
+                                            <div class="mb-3">
+                                                <label class="form-label" for="basic-default-fullname">Question</label>
+                                                <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la question" name="classe_nom" />
+                                                
+                                            </div>
+                                            <div class="mb-3">
+                                                <a href="#" id="ajouter-image">
+                                                    <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
+                                                </a>
+                                                <input type="file" class="d-none" id="input-image" onchange="previewImage(event)">
+                                            </div>
+                                            <div class="mb-3 border">
+                                                <img id="preview-image" style="height: 200px; width: auto; object-fit: fill;" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="basic-default-fullname">Reponse juste</label>
+                                                <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la reponse" name="classe_nom" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <a href="#" id="ajouter-image">
+                                                    <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
+                                                </a>
+                                                <input type="file" class="d-none" id="input-image" onchange="previewImage(event)">
+                                            </div>
+                                            <div class="mb-3 border">
+                                                <img id="preview-image" style="height: 200px; width: auto; object-fit: fill;" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="basic-default-fullname">Fausse Reponse</label>
+                                                <input type="text" class="form-control mb-2" id="basic-default-fullname" placeholder="Inserer la fausse reponse" name="classe_nom" />
+                                                
+                                            </div>
+                                            <div class="mb-3">
+                                                <a href="#" id="ajouter-image">
+                                                    <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
+                                                </a>
+                                                <input type="file" class="d-none" id="input-image" onchange="previewImage(event)">
+                                            </div>
+                                            <div class="mb-3 border">
+                                                <img id="preview-image" style="height: 200px; width: auto; object-fit: fill;" />
+                                            </div>
+                                            <div class="mb-3">
+                                                <p class="text-center"><a href="#" class="text-warning" style="font-size: 20px; font-weight: bold ;"><i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une autre fausse reponse</a></p>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="basic-default-fullname">Autres</label>
+                                                <div class="form-group">
+                                                    <input type="checkbox"> Pas de reponse <br>
+                                                    <input type="checkbox"> Toutes les reponses sont justes <br>
+                                                    <input type="checkbox"> Aucune de ces reponses n'est juste <br>
+                                                    <input type="checkbox"> Autre reponse <br>
+                                                </div>
+                                            </div>
+                                            
+
+                                                <!-- Icon here -->
                                             <button type="submit" class="btn btn-primary">Enregistrer</button>
+
                                             </form>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="row mt-4">
-                                    <div class="col-lg-12 mb-4 order-0">
-                                        <div class="card">
-                                            <div class="table-responsive text-nowrap">
-                                                <table class="table">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th>Mode</th>
-                                                            <th>Actions</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody class="table-border-bottom-0">
-                                                        <?php for ($i = 0; $i < count($mode); $i++) : ?>
-                                                            <tr>
-                                                                <td><?= $mode[$i]->mode_nom ?></td>
-                                                                <td>
-                                                                    <a class="badge bg-label-info me-1" href="" data-bs-toggle="modal" data-bs-target="#basicModal<?= $mode[$i]->mode_id ?>">Modifier</a>
-                                                                    <a class="badge bg-label-danger me-1" href="<?= base_url() ?>Mode/supprimer/<?= $mode[$i]->mode_id; ?>">Supprimer</a>
-                                                                </td>
-                                                            </tr>
-
-
-                                                            <div class="modal fade" id="basicModal<?= $mode[$i]->mode_id ?>" tabindex="-1" aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel1">Modification</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <?= form_open('Mode/modifier/' . $mode[$i]->mode_id) ?>
-                                                                        <div class="modal-body">
-                                                                            <div class="row">
-                                                                                <div class="col mb-3">
-                                                                                    <label for="classe" class="form-label">Mode</label>
-                                                                                    <input type="text" id="classe" class="form-control" placeholder="Inserer le mode d'examen" name="mode_nom" value="<?= $mode[$i]->mode_nom; ?>" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                                                Fermer
-                                                                            </button>
-                                                                            <button type="submit" class="btn btn-primary">Modifier</button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                            </div>
-                                        </div>
-
-
-                                    <?php endfor; ?>
-                                    </tbody>
-                                    </table>
-                                    </div>
-                                </div>
+                                
 
                             </div>
                         </div>
@@ -209,6 +209,20 @@
 
             <!-- Page JS -->
             <script src="<?= base_url(); ?>public/assets/js/dashboards-analytics.js"></script>
+            <script>
+                $(document).on('click','#ajouter-image',function() {
+                    $('#input-image').click() ;
+                }) ;
+                const previewImage = (event) => {
+                    const imageFiles = event.target.files ;
+                    const imageFilesLength = imageFiles.length ;
+                    if(imageFilesLength > 0) {
+                        const imgSrc = URL.createObjectURL(imageFiles[0]) ;
+                        const imagePreviewElement = document.getElementById('preview-image') ;
+                        imagePreviewElement.src = imgSrc ;
+                    }
+                }
+            </script>
 </body>
 
 </html>

@@ -29,6 +29,44 @@
     <script src="<?= base_url() ?>public/assets/vendor/js/helpers.js"></script>
 
     <script src="<?= base_url() ?>public/assets/js/config.js"></script>
+    <style>
+        .list-hover {
+            cursor: pointer ;
+        }
+        #list-view {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            width: 100% ;
+        }
+        #list-view li {
+            border: 1px solid #ddd;
+            margin-top: -1px; /* Prevent double borders */
+            background-color: #f6f6f6;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            display: block;
+            position: relative;
+            
+        }
+        #list-view  li:hover {
+            background-color: #eee;
+            cursor: pointer ;
+        }
+        .close {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: 0%;
+            padding: 12px 16px;
+            transform: translate(0%, -50%);
+        }
+        .close:hover {
+            background: #bbb;
+        }
+    </style>
 </head>
 
 <body>
@@ -121,9 +159,34 @@
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-fullname">Question</label>
                                                 <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la question" name="classe_nom" />
-                                                
                                             </div>
                                             <div class="mb-3">
+                                                <label class="form-label" for="basic-default-fullname">Reponses</label>
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer une reponse" name="classe_nom" />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='mb-3' style='min-height:20px; display: flex; flex-wrap: wrap'>
+                                                
+                                                <ul id="list-view">
+                                                    <li>Salut les amis !<span class="close">x</span></li>
+
+                                                    <li>Billy<span class="close">x</span></li>
+                                                    <li>Bob<span class="close">x</span></li>
+
+                                                    <li>Calvin<span class="close">x</span></li>
+                                                    <li>Christina<span class="close">x</span></li>
+                                                </ul> 
+                                                
+                                            </div>
+
+
+                                            <!-- <div class="mb-3">
                                                 <a href="#" id="ajouter-image">
                                                     <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
                                                 </a>
@@ -137,13 +200,13 @@
                                                 <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la reponse" name="classe_nom" />
                                             </div>
                                             <div class="mb-3">
-                                                <a href="#" id="ajouter-image">
+                                                <a href="#" id="ajouter-image-reponse">
                                                     <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
                                                 </a>
-                                                <input type="file" class="d-none" id="input-image" onchange="previewImage(event)">
+                                                <input type="file" class="d-none" id="input-image-reponse" onchange="previewImageReponse(event)">
                                             </div>
                                             <div class="mb-3 border">
-                                                <img id="preview-image" style="height: 200px; width: auto; object-fit: fill;" />
+                                                <img id="preview-image-reponse" style="height: 200px; width: auto; object-fit: fill;" />
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-fullname">Fausse Reponse</label>
@@ -170,7 +233,7 @@
                                                     <input type="checkbox"> Aucune de ces reponses n'est juste <br>
                                                     <input type="checkbox"> Autre reponse <br>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             
 
                                                 <!-- Icon here -->
@@ -213,6 +276,9 @@
                 $(document).on('click','#ajouter-image',function() {
                     $('#input-image').click() ;
                 }) ;
+                $(document).on('click','#ajouter-image-reponse',function() {
+                    $('#input-image-reponse').click() ;
+                }) ;
                 const previewImage = (event) => {
                     const imageFiles = event.target.files ;
                     const imageFilesLength = imageFiles.length ;
@@ -221,6 +287,29 @@
                         const imagePreviewElement = document.getElementById('preview-image') ;
                         imagePreviewElement.src = imgSrc ;
                     }
+                }
+                const previewImageReponse = (event) => {
+                    const imageFiles = event.target.files ;
+                    const imageFilesLength = imageFiles.length ;
+                    if(imageFilesLength > 0) {
+                        const imgSrc = URL.createObjectURL(imageFiles[0]) ;
+                        const imagePreviewElement = document.getElementById('preview-image-reponse') ;
+                        imagePreviewElement.src = imgSrc ;
+                    }
+                }
+
+
+
+
+                // close button:
+                var closebtns = document.getElementsByClassName("close");
+                var i;
+
+                // Loop through the elements, and hide the parent, when clicked on
+                for (i = 0; i < closebtns.length; i++) {
+                closebtns[i].addEventListener("click", function() {
+                    this.parentElement.remove() ;
+                });
                 }
             </script>
 </body>

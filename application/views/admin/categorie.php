@@ -54,18 +54,18 @@
                     </li>
 
                     <!-- Layouts -->
-                    <li class="menu-item">
+                    <!-- <li class="menu-item">
                         <a href="<?= base_url() ?>classe" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Classe</div>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="menu-item">
-                        <a href="<?= base_url() ?>classe" class="menu-link">
+                        <a href="<?= base_url() ?>mode" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Mode</div>
                         </a>
-                    </li>
+                    </li> 
 
                     <li class="menu-header small text-uppercase">
                         <span class="menu-header-text">Questionnaires</span>
@@ -142,6 +142,10 @@
                             </div>
                         </div>
 
+                    </div>
+
+                    <div id="modal">
+                    
                     </div>
 
 
@@ -283,54 +287,56 @@
                                     })
                                     .done(function(data) {
                                         var affichage = '';
+                                        var modal = '' ;
                                         for (let j = 0; j < data.length; j++) {
 
                                             affichage += `<tr><td>${data[j].categorie_nom}</td>`;
                                             affichage += '<td>';
                                             affichage += '<ul>';
-                                            var d = data[j].section ;
-                                            for(let a = 0; a < d.length; a++) {
-                                                affichage += '<li>'+d[a].section_nom+'</li>' ;
+                                            var d = data[j].section;
+                                            for (let a = 0; a < d.length; a++) {
+                                                affichage += '<li>' + d[a].section_nom + '</li>';
                                             }
                                             affichage += '</ul>';
                                             affichage += '</td>';
                                             affichage += `<td>
-                                        <a class="badge bg-label-info me-1" href="" data-bs-toggle="modal" data-bs-target="#basicModal${data[j].categorie_id}">Modifier</a>
+                                        
                                         <a data-id="${data[j].categorie_id}" class="badge bg-label-danger me-1 delete" href="<?= base_url() ?>Categorie/supprimer/${data[j].categorie_id}">Supprimer</a>
                                 `;
-                                            
+
                                             affichage += '</td><tr>';
-                                            affichage += `
-                                            <div class="modal fade" id="basicModal${data[j].categorie_id}" tabindex="-1" aria-hidden="true">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel1">Modification</h5>
-                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                        </div>
-                                                                        <?= form_open('categorie/modifier/${data[j].categorie_id}') ?>
-                                                                        <div class="modal-body">
-                                                                            <div class="row">
-                                                                                <div class="col mb-3">
-                                                                                    <label for="categorie" class="form-label">Categorie</label>
-                                                                                    <input type="text" id="categorie" class="form-control" placeholder="Inserer la categorie" name="categorie_nom" value="${data[j].categorie_nom}" />
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                                                Fermer
-                                                                            </button>
-                                                                            <button type="submit" class="btn btn-primary">Modifier</button>
-                                                                            </form>
-                                                                        </div>
+                                            modal += `
+                                                <div class="modal fade" id="basicModal${data[j].categorie_id}" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel1">Modification</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <?= form_open('categorie/modifier/${data[j].categorie_id}') ?>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col mb-3">
+                                                                        <label for="categorie" class="form-label">Categorie</label>
+                                                                        <input type="text" id="categorie" class="form-control" placeholder="Inserer la categorie" name="categorie_nom" value="${data[j].categorie_nom}" />
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                                    Fermer
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary">Modifier</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             `;
                                         }
 
                                         $("#tbody").html(affichage);
+                                        $("#modal").html(modal) ;
                                     })
                             }
 

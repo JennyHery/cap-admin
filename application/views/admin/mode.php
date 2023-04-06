@@ -55,12 +55,12 @@
                 </li>
 
             <!-- Layouts -->
-            <li class="menu-item ">
+            <!-- <li class="menu-item ">
                 <a href="<?= base_url() ?>classe" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Layouts">Classe</div>
                 </a>
-            </li>
+            </li> -->
             <li class="menu-item active">
                 <a href="<?= base_url() ?>mode" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-layout"></i>

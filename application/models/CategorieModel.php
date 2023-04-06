@@ -22,16 +22,15 @@
             $query = $this->db->get('categorie');
             $results = $query->result() ;
             $data = [] ;
+            
+
             for($i = 0; $i < count($results); $i++) {
+                $id = $results[$i]->categorie_id ;
                 $this->db->select('*') ;
                 $this->db->from('section') ;
-                $this->db->join('categorie','categorie_id') ;
-                $d = $this->db->get()->result() ;
-                array_push($data,$d) ;
-            }
-            $final = [] ;
-            for($j = 0; $j < count($results); $j++) {
-                $results[$j]->section = $data[$j] ;
+                $this->db->where('categorie_id',$id) ;
+                $data = $this->db->get()->result() ;
+                $results[$i]->section = $data ;
             }
             return $results ;
         }

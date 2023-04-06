@@ -13,10 +13,10 @@
 
         public function index() {
             $this->load->view('admin/questionnaire',array(
-                'mode' => $this->mode->getAllMode() ,
+                // 'mode' => $this->mode->getAllMode() ,
                 'categorie' => $this->categorie->getAllCategorie() ,
-                'classe' => $this->classe->getAllClasse() ,
-                'questions' => $this->questionnaire->getAllQuestionnaire() ,
+                // 'classe' => $this->classe->getAllClasse() ,
+                // 'questions' => $this->questionnaire->getAllQuestionnaire() ,
             )) ;
         }
         public function enregistrer() {

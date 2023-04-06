@@ -97,12 +97,12 @@
                     </li>
 
                     <!-- Layouts -->
-                    <li class="menu-item ">
+                    <!-- <li class="menu-item ">
                         <a href="<?= base_url() ?>classe" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Classe</div>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="menu-item ">
                         <a href="<?= base_url() ?>mode" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -130,75 +130,48 @@
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="row">
                             <div class="col-lg-12 mb-4 order-0">
-                                <div class="card">
+                                <div class="card" style="height: 800px;">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Categorie</label>
-
-                                                <select class="form-select color-dropdown" id="categorie">
-                                                    <option value="-1">Choisir une categorie</option>
-                                                    <?php for ($i = 0; $i < count($categorie); $i++) : ?>
-                                                        <option value="<?= $categorie[$i]->categorie_id; ?>"><?= $categorie[$i]->categorie_nom; ?></option>
-                                                    <?php endfor; ?>
+                                            <div class="col-md-3">
+                                                <select name="" id="" class="form-select">
+                                                    <option value="">Choisir categorie</option>
                                                 </select>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Classe</label>
-                                                <select class="form-select color-dropdown" id="classe">
-                                                    <option value="-1">Choisir une classe</option>
-                                                    <?php for ($i = 0; $i < count($classe); $i++) : ?>
-                                                        <option value="<?= $classe[$i]->classe_id; ?>"><?= $classe[$i]->classe_nom; ?></option>
-                                                    <?php endfor; ?>
-                                                </select>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" placeholder="Titre de la fiche">
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Mode</label>
-                                                <select class="form-select color-dropdown" id="mode">
-                                                    <option value="-1">Choisir un mode d'examen</option>
-                                                    <?php for ($i = 0; $i < count($mode); $i++) : ?>
-                                                        <option value="<?= $mode[$i]->mode_id; ?>"><?= $mode[$i]->mode_nom; ?></option>
-                                                    <?php endfor; ?>
-                                                </select>
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" placeholder="Mot-cle">
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="question">Question</label>
-                                                <input type="text" class="form-control" id="question" placeholder="Inserer la question" name="classe_nom" />
+                                            <div class="col-md-3">
+                                                <input type="text" class="form-control" placeholder="Mot-cle">
+                                                <button class="btn btn-primary mt-2">Confirmer</button>
                                             </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="reponses">Reponses</label>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="reponses" placeholder="Inserer une reponse" name="classe_nom" />
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <a href="#" class="btn btn-primary" id="btn-ajouter">Ajouter</a>
-                                                    </div>
-                                                </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <table class="table table-striped table-responsive">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Test</th>
+                                                            <th>Test</th>
+                                                            <th>Test</th>
+                                                            <th>Test</th>
+                                                            <th>Test</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Test</td>
+                                                            <td>Test</td>
+                                                            <td>Test</td>
+                                                            <td>Test</td>
+                                                            <td>Test</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                            <div class='mb-3' style='min-height:20px; display: flex; flex-wrap: wrap'>
-                                                <p class='text-muted' style="font-size: 12px;">Cocher le(s) bonne(s) reponse(s)</p>
-                                                <ul id="list-view">
-                                                    <!-- <li>
-                                                        <input type="checkbox" class="mr-2 check-true">
-                                                        <span class="content">Salut les amis !</span>
-                                                        <span class="close">x</span>
-                                                    </li> -->
-
-
-                                                </ul>
-
-                                            </div>
-                                            <!-- <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Autres</label><br>
-                                                <input type="checkbox autre" value="Pas de reponse"> Pas de reponse<br>
-                                                <input type="checkbox autre" value="Aucune de ces reponses n'est juste"> Aucune de ces reponses n'est juste<br>
-                                                <input type="checkbox autre" value="Toutes ces reponses sont valables"> Toutes ces reponses sont valables<br>
-                                            </div> -->
-
-
-                                            <!-- Icon here -->
-                                            <a class="btn btn-primary" id="enregistrer" href="#">Enregistrer</a>
                                         </div>
 
                                     </div>
@@ -207,50 +180,7 @@
 
                             </div>
                         </div>
-                        <div class="row mt-4">
-                            <div class="col-lg-12 mb-4 order-0">
-                                <div class="card">
-                                    <div class="table-responsive text-nowrap">
-                                        <table class="table">
-                                            <thead class="table-light">
-                                                <tr>
-                                                    <th>Categorie</th>
-                                                    <th>Classe</th>
-                                                    <th>Mode</th>
-                                                    <th>Question</th>
-                                                    <th>Reponses</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="table-border-bottom-0" id="tbody-question">
-                                                <?php for ($q = 0; $q < count($questions); $q++) : ?>
-                                                    <tr>
-                                                        <td><?php echo $questions[$q]->categorie_nom; ?></td>
-                                                        <td><?php echo $questions[$q]->classe_nom; ?></td>
-                                                        <td><?php echo $questions[$q]->mode_nom; ?></td>
-                                                        <td><?php echo $questions[$q]->reponses_question; ?></td>
-                                                        <td>
-                                                            <?php
-                                                            $d = json_decode($questions[$q]->reponses_contenu);
-                                                            for ($k = 0; $k < count($d); $k++) {
-                                                                echo '<span class="text-info">' . $d[$k][0] . '</span><span> : ' . $d[$k][1] . '</span><br>';
-                                                            }
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <a class="badge bg-label-danger me-1" href="<?= base_url() ?>Questionnaire/supprimer/<?= $questions[$q]->reponses_id; ?>">Supprimer</a>
-                                                        </td>
-                                                    </tr>
 
-
-                                                <?php endfor; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -359,13 +289,13 @@
                                     $('.list-view-item').remove();
                                     $('#question').focus();
                                     $.ajax({
-                                        url: URL + 'Questionnaire/getAllQuestions',
-                                        type: 'post',
-                                        data: {},
-                                    })
-                                    .done(function(data) {
-                                        $("#tbody-question").html(data);
-                                    })
+                                            url: URL + 'Questionnaire/getAllQuestions',
+                                            type: 'post',
+                                            data: {},
+                                        })
+                                        .done(function(data) {
+                                            $("#tbody-question").html(data);
+                                        })
                                 }
                             })
                     })

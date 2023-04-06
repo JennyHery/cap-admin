@@ -8,35 +8,31 @@
         }
         public function index() {
             $this->load->view('admin/categorie',array(
-                'categorie' => $this->categorie->getAllCategorie() ,
+                'categorie' => $this->showCategorieSection() ,
             )) ;
         }
         
         public function register() {
-            $this->form_validation->set_error_delimiters('<div class="text-danger">', '</div>');
-            $this->form_validation->set_rules('categorie_nom','categorie_nom','required', array(
-                'required' => 'Ce champ est obligatoire !'
+            $categorie = $_POST['categorie'] ;
+            $data = json_decode($_POST['content']) ;
+
+            $this->categorie->registerCategorie(['categorie_nom' => $categorie],$data) ;
+
+            echo json_encode(array(
+                'success' => true ,
             )) ;
-            if($this->form_validation->run() === FALSE) {
-                $this->load->view('admin/categorie',array(
-                    'categorie' => $this->categorie->getAllCategorie() ,
-                )) ;
-            }
-            else {
-                $data = array(
-                    'categorie_nom' => $this->input->post('categorie_nom') ,
-                );
-                $this->categorie->registerCategorie($data) ;
-                redirect('categorie') ;
-            }
         }
 
         public function supprimer($id) {
             $this->categorie->deleteCategorie($id) ;
-            redirect('categorie') ;
+            echo json_encode(array(
+                'success' => true ,
+            )) ;
+        }
+        public function getCateg() {
+            echo json_encode($this->showCategorieSection()) ;
         } 
-        public function modifier($id) {
-            $this->categorie->updateCategorie($this->input->post('categorie_nom'),$id) ;
-            redirect('categorie') ;
+        public function showCategorieSection() {
+            return $this->categorie->getAllCategorie() ;
         }
     }

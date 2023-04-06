@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
-<meta charset="utf-8" />
-    <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
     <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
@@ -24,6 +22,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
     <link rel="stylesheet" href="<?= base_url() ?>public/assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>public/assets/css/sweetalert2.min.css" />
 
     <!-- Page CSS -->
 
@@ -37,160 +36,308 @@
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-        <!-- Menu -->
+            <!-- Menu -->
 
-        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-            <div class="app-brand demo"></div>
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo"></div>
 
-            <div class="menu-inner-shadow"></div>
-            <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Parametres</span>
-            </li>
-            <ul class="menu-inner py-1">
-                <li class="menu-item active">
-                    <a href="<?= base_url() ?>categorie" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                        <div data-i18n="Analytics">Categorie</div>
-                    </a>
+                <div class="menu-inner-shadow"></div>
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Parametres</span>
                 </li>
+                <ul class="menu-inner py-1">
+                    <li class="menu-item active">
+                        <a href="<?= base_url() ?>categorie" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                            <div data-i18n="Analytics">Categorie</div>
+                        </a>
+                    </li>
 
-            <!-- Layouts -->
-            <li class="menu-item">
-                <a href="<?= base_url() ?>classe" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">Classe</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="<?= base_url() ?>classe" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">Mode</div>
-                </a>
-            </li>
+                    <!-- Layouts -->
+                    <li class="menu-item">
+                        <a href="<?= base_url() ?>classe" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">Classe</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url() ?>classe" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                            <div data-i18n="Layouts">Mode</div>
+                        </a>
+                    </li>
 
-            <li class="menu-header small text-uppercase">
-                <span class="menu-header-text">Questionnaires</span>
-            </li>
-            <li class="menu-item">
-                <a href="<?= base_url() ?>questionnaire" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                    <div data-i18n="Account Settings">Questions</div>
-                </a>
-            </li>
-            
-          </ul>
-        </aside>
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Questionnaires</span>
+                    </li>
+                    <li class="menu-item">
+                        <a href="<?= base_url() ?>questionnaire" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                            <div data-i18n="Account Settings">Questions</div>
+                        </a>
+                    </li>
 
-
-        <!-- Layout container -->
-        <div class="layout-page">
-            <div class="content-wrapper">
-                <div class="container-xxl flex-grow-1 container-p-y">
-                    <div class="row">
-                        <div class="col-lg-12 mb-4 order-0">
-                            <div class="card" style='height: 200px;overflow-y:auto;'>
-                            <div class="card-body">
-                                <div class="row">
-                                    <?= form_open('categorie/enregistrer') ?>
-                                    <div class="mb-3">
-                                        <label class="form-label" for="basic-default-fullname">Categorie</label>
-                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la categorie" name="categorie_nom" />
-                                        <?php echo form_error('categorie_nom'); ?>  
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                                </form>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    <div class="row mt-4">
-                        <div class="col-lg-12 mb-4 order-0">
-                        <div class="card">
-                            <div class="table-responsive text-nowrap">
-                            <table class="table">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Categorie</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="table-border-bottom-0">
-                                    <?php for($i = 0; $i < count($categorie); $i++): ?>
-                                        <tr>
-                                            <td><?= $categorie[$i]->categorie_nom ?></td>
-                                            <td>
-                                                <a class="badge bg-label-info me-1" href="" data-bs-toggle="modal" data-bs-target="#basicModal<?= $categorie[$i]->categorie_id ?>">Modifier</a>
-                                                <a class="badge bg-label-danger me-1" href="<?= base_url() ?>Categorie/supprimer/<?= $categorie[$i]->categorie_id ;?>">Supprimer</a>
-                                            </td>
-                                        </tr>
+                </ul>
+            </aside>
 
 
-                                        <div class="modal fade" id="basicModal<?= $categorie[$i]->categorie_id ?>" tabindex="-1" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel1">Modification</h5>
-                                                        <button
-                                                        type="button"
-                                                        class="btn-close"
-                                                        data-bs-dismiss="modal"
-                                                        aria-label="Close"
-                                                        ></button>
+            <!-- Layout container -->
+            <div class="layout-page">
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="row">
+                            <div class="col-lg-12 mb-4 order-0">
+                                <div class="card" style='height: 600px;overflow-y:auto;'>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <?= form_open('categorie/register', array("id" => "form-categorie")) ?>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="categorie">Categorie</label>
+                                                <input type="text" class="form-control" id="categorie" placeholder="Inserer categorie" name="categorie_nom" />
+                                                <?php echo form_error('categorie_nom'); ?>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="section">Sections</label>
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <input type="text" class="form-control" id="section" placeholder="Inserer section" name="categorie_nom" />
                                                     </div>
-                                                    <?= form_open('categorie/modifier/'.$categorie[$i]->categorie_id) ?>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col mb-3">
-                                                                <label for="categorie" class="form-label">Categorie</label>
-                                                                <input type="text" id="categorie" class="form-control" placeholder="Inserer la categorie" name="categorie_nom" value="<?= $categorie[$i]->categorie_nom ;?>" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                                        Fermer
-                                                        </button>
-                                                        <button type="submit" class="btn btn-primary">Modifier</button>
-                                                        </form>
+                                                    <div class="col-md-2">
+                                                        <a href="#" class="btn btn-info btn-block" id="btn-addList">Ajouter</a>
                                                     </div>
                                                 </div>
+
+                                                <?php echo form_error('categorie_nom'); ?>
                                             </div>
+                                            <div style="height: 300px; font-weight:bold; overflow-y:auto" class="mb-3 p-3 border" id="section-list">
+                                                <!-- <p> - Francais</p> -->
                                             </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                            </form>
                                         </div>
 
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="col-lg-12 mb-4 order-0">
+                                        <div class="card">
+                                            <div class="table-responsive text-nowrap">
+                                                <table class="table">
+                                                    <thead class="table-light">
+                                                        <tr>
+                                                            <th>Categorie</th>
+                                                            <th>Sections</th>
+                                                            <th>Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="table-border-bottom-0" id="tbody">
 
-                                    <?php endfor ; ?>
-                                </tbody>
-                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        
-                        </div>
+
                     </div>
-                </div>      
-            </div>
 
-        </div>
-            
 
-    <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
-    <script src="<?= base_url(); ?>public/assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="<?= base_url(); ?>public/assets/vendor/libs/popper/popper.js"></script>
-    <script src="<?= base_url(); ?>public/assets/vendor/js/bootstrap.js"></script>
-    <script src="<?= base_url(); ?>public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+                    <!-- Core JS -->
+                    <!-- build:js assets/vendor/js/core.js -->
+                    <script src="<?= base_url(); ?>public/assets/vendor/libs/jquery/jquery.js"></script>
+                    <script src="<?= base_url(); ?>public/assets/vendor/libs/popper/popper.js"></script>
+                    <script src="<?= base_url(); ?>public/assets/vendor/js/bootstrap.js"></script>
+                    <script src="<?= base_url() ?>public/assets/js/sweetalert2.min.js"></script>
+                    <script src="<?= base_url(); ?>public/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="<?= base_url(); ?>public/assets/vendor/js/menu.js"></script>
-    <!-- endbuild -->
+                    <script src="<?= base_url(); ?>public/assets/vendor/js/menu.js"></script>
+                    <!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script src="<?= base_url(); ?>public/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+                    <!-- Vendors JS -->
+                    <script src="<?= base_url(); ?>public/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-    <!-- Main JS -->
-    <script src="<?= base_url(); ?>public/assets/js/main.js"></script>
+                    <!-- Main JS -->
+                    <script src="<?= base_url(); ?>public/assets/js/main.js"></script>
 
-    <!-- Page JS -->
-    <script src="<?= base_url(); ?>public/assets/js/dashboards-analytics.js"></script>
-  </body>
+                    <!-- Page JS -->
+                    <script src="<?= base_url(); ?>public/assets/js/dashboards-analytics.js"></script>
+
+                    <script>
+                        $(document).ready(function() {
+                            // ajout des sections
+                            $(document).on('click', '#btn-addList', function() {
+                                if ($("#section").val() == "") {
+                                    alert("remplir ce champ");
+                                } else {
+                                    var val = $("#section").val();
+                                    $("#section").val('');
+                                    $("#section").focus();
+                                    $("#section-list").append(`
+                        <p>
+                            <i class="menu-icon text-danger tf-icons bx bx-trash-alt delete-section" style='cursor: pointer;'></i>
+                            <span class='text-danger'>|</span>
+                            <span class='section-content'>${val}</span>
+                        </p>
+                        <hr>
+                    `);
+
+                                    $(document).on('click', '.delete-section', function() {
+                                        $(this).parent().next().remove();
+                                        $(this).parent().remove();
+                                    })
+
+                                }
+                            });
+
+                            // envoie des donnees:
+                            $(document).on('submit', '#form-categorie', function(e) {
+                                e.preventDefault();
+
+                                if ($("#categorie").val() == "" || ($('.section-content')).length == 0) {
+                                    alert('Remplir les champs');
+                                } else {
+                                    const url = $(this).attr('action');
+                                    const type = $(this).attr('method');
+                                    var content = $(".section-content");
+                                    var contentTab = [];
+                                    for (let i = 0; i < content.length; i++) {
+                                        contentTab.push(content[i].innerText);
+                                    }
+                                    // data:
+                                    var contentTabJson = JSON.stringify(contentTab);
+                                    var categorie = $("#categorie").val();
+                                    $.ajax({
+                                            url: url,
+                                            type: type,
+                                            data: {
+                                                'categorie': categorie,
+                                                'content': contentTabJson,
+                                            },
+                                            dataType: 'json',
+                                        })
+                                        .done(function(data) {
+                                            if (data.success) {
+                                                $("#section-list").empty();
+                                                $("#categorie").val('');
+                                                Swal.fire(
+                                                    'Enregistrement',
+                                                    'Enregistrement effectue !',
+                                                    'success'
+                                                )
+                                                getCategorieSection();
+                                            }
+                                        })
+                                }
+
+
+
+
+                            })
+
+                            $(document).on('click', '.delete', function(e) {
+                                e.preventDefault();
+                                Swal.fire({
+                                    title: 'Vous etes sur de faire la suppression ?',
+                                    text: "Cette action sera irreversible !",
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Proceder',
+                                    cancelButtonText: 'Annuler',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        $.ajax({
+                                                url: $(this).attr('href'),
+                                                type: 'get',
+                                                data: {},
+                                                dataType: 'json',
+                                            })
+                                            .done(function(data) {
+                                                if (data.success) {
+                                                    Swal.fire(
+                                                        'Suppression',
+                                                        'Suppression effectuee !',
+                                                        'success'
+                                                    )
+                                                    getCategorieSection();
+                                                }
+                                            })
+
+
+                                    }
+                                })
+                            })
+
+                            getCategorieSection();
+
+                            function getCategorieSection() {
+                                $.ajax({
+                                        url: '<?php echo base_url(); ?>Categorie/getCateg',
+                                        type: 'get',
+                                        data: {},
+                                        dataType: 'json',
+                                    })
+                                    .done(function(data) {
+                                        var affichage = '';
+                                        for (let j = 0; j < data.length; j++) {
+
+                                            affichage += `<tr><td>${data[j].categorie_nom}</td>`;
+                                            affichage += '<td>';
+                                            affichage += '<ul>';
+                                            var d = data[j].section ;
+                                            for(let a = 0; a < d.length; a++) {
+                                                affichage += '<li>'+d[a].section_nom+'</li>' ;
+                                            }
+                                            affichage += '</ul>';
+                                            affichage += '</td>';
+                                            affichage += `<td>
+                                        <a class="badge bg-label-info me-1" href="" data-bs-toggle="modal" data-bs-target="#basicModal${data[j].categorie_id}">Modifier</a>
+                                        <a data-id="${data[j].categorie_id}" class="badge bg-label-danger me-1 delete" href="<?= base_url() ?>Categorie/supprimer/${data[j].categorie_id}">Supprimer</a>
+                                `;
+                                            
+                                            affichage += '</td><tr>';
+                                            affichage += `
+                                            <div class="modal fade" id="basicModal${data[j].categorie_id}" tabindex="-1" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel1">Modification</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <?= form_open('categorie/modifier/${data[j].categorie_id}') ?>
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div class="col mb-3">
+                                                                                    <label for="categorie" class="form-label">Categorie</label>
+                                                                                    <input type="text" id="categorie" class="form-control" placeholder="Inserer la categorie" name="categorie_nom" value="${data[j].categorie_nom}" />
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                                                Fermer
+                                                                            </button>
+                                                                            <button type="submit" class="btn btn-primary">Modifier</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                            `;
+                                        }
+
+                                        $("#tbody").html(affichage);
+                                    })
+                            }
+
+
+
+                        })
+                    </script>
+</body>
+
 </html>

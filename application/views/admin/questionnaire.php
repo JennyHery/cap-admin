@@ -31,17 +31,20 @@
     <script src="<?= base_url() ?>public/assets/js/config.js"></script>
     <style>
         .list-hover {
-            cursor: pointer ;
+            cursor: pointer;
         }
+
         #list-view {
             list-style-type: none;
             padding: 0;
             margin: 0;
-            width: 100% ;
+            width: 100%;
         }
+
         #list-view li {
             border: 1px solid #ddd;
-            margin-top: -1px; /* Prevent double borders */
+            margin-top: -1px;
+            /* Prevent double borders */
             background-color: #f6f6f6;
             padding: 12px;
             text-decoration: none;
@@ -49,12 +52,14 @@
             color: black;
             display: block;
             position: relative;
-            
+
         }
-        #list-view  li:hover {
+
+        #list-view li:hover {
             background-color: #eee;
-            cursor: pointer ;
+            cursor: pointer;
         }
+
         .close {
             cursor: pointer;
             position: absolute;
@@ -63,6 +68,7 @@
             padding: 12px 16px;
             transform: translate(0%, -50%);
         }
+
         .close:hover {
             background: #bbb;
         }
@@ -127,124 +133,121 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
-                                            <?= form_open('mode/enregistrer') ?>
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-fullname">Categorie</label>
-                                                
-                                                <select class="form-select color-dropdown">
-                                                    <option>Choisir une categorie</option>
-                                                    <?php for($i = 0; $i < count($categorie);$i++): ?>
-                                                        <option><?= $categorie[$i]->categorie_nom ; ?> 
-                                                    <?php endfor ; ?>
+
+                                                <select class="form-select color-dropdown" id="categorie">
+                                                    <option value="-1">Choisir une categorie</option>
+                                                    <?php for ($i = 0; $i < count($categorie); $i++) : ?>
+                                                        <option value="<?= $categorie[$i]->categorie_id; ?>"><?= $categorie[$i]->categorie_nom; ?></option>
+                                                    <?php endfor; ?>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-fullname">Classe</label>
-                                                <select class="form-select color-dropdown">
-                                                    <option>Choisir une classe</option>
-                                                    <?php for($i = 0; $i < count($classe);$i++): ?>
-                                                        <option><?= $classe[$i]->classe_nom ; ?> 
-                                                    <?php endfor ; ?>
+                                                <select class="form-select color-dropdown" id="classe">
+                                                    <option value="-1">Choisir une classe</option>
+                                                    <?php for ($i = 0; $i < count($classe); $i++) : ?>
+                                                        <option value="<?= $classe[$i]->classe_id; ?>"><?= $classe[$i]->classe_nom; ?></option>
+                                                    <?php endfor; ?>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="basic-default-fullname">Mode</label>
-                                                <select class="form-select color-dropdown">
-                                                    <option>Choisir un mode d'examen</option>
-                                                    <?php for($i = 0; $i < count($mode);$i++): ?>
-                                                        <option><?= $mode[$i]->mode_nom ; ?> 
-                                                    <?php endfor ; ?>
+                                                <select class="form-select color-dropdown" id="mode">
+                                                    <option value="-1">Choisir un mode d'examen</option>
+                                                    <?php for ($i = 0; $i < count($mode); $i++) : ?>
+                                                        <option value="<?= $mode[$i]->mode_id; ?>"><?= $mode[$i]->mode_nom; ?></option>
+                                                    <?php endfor; ?>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Question</label>
-                                                <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la question" name="classe_nom" />
+                                                <label class="form-label" for="question">Question</label>
+                                                <input type="text" class="form-control" id="question" placeholder="Inserer la question" name="classe_nom" />
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Reponses</label>
+                                                <label class="form-label" for="reponses">Reponses</label>
                                                 <div class="row">
                                                     <div class="col-md-10">
-                                                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer une reponse" name="classe_nom" />
+                                                        <input type="text" class="form-control" id="reponses" placeholder="Inserer une reponse" name="classe_nom" />
                                                     </div>
                                                     <div class="col-md-2">
-                                                        <button type="submit" class="btn btn-primary">Ajouter</button>
+                                                        <a href="#" class="btn btn-primary" id="btn-ajouter">Ajouter</a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class='mb-3' style='min-height:20px; display: flex; flex-wrap: wrap'>
-                                                
+                                                <p class='text-muted' style="font-size: 12px;">Cocher le(s) bonne(s) reponse(s)</p>
                                                 <ul id="list-view">
-                                                    <li>Salut les amis !<span class="close">x</span></li>
+                                                    <!-- <li>
+                                                        <input type="checkbox" class="mr-2 check-true">
+                                                        <span class="content">Salut les amis !</span>
+                                                        <span class="close">x</span>
+                                                    </li> -->
 
-                                                    <li>Billy<span class="close">x</span></li>
-                                                    <li>Bob<span class="close">x</span></li>
 
-                                                    <li>Calvin<span class="close">x</span></li>
-                                                    <li>Christina<span class="close">x</span></li>
-                                                </ul> 
-                                                
+                                                </ul>
+
                                             </div>
-
-
                                             <!-- <div class="mb-3">
-                                                <a href="#" id="ajouter-image">
-                                                    <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
-                                                </a>
-                                                <input type="file" class="d-none" id="input-image" onchange="previewImage(event)">
-                                            </div>
-                                            <div class="mb-3 border">
-                                                <img id="preview-image" style="height: 200px; width: auto; object-fit: fill;" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Reponse juste</label>
-                                                <input type="text" class="form-control" id="basic-default-fullname" placeholder="Inserer la reponse" name="classe_nom" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <a href="#" id="ajouter-image-reponse">
-                                                    <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
-                                                </a>
-                                                <input type="file" class="d-none" id="input-image-reponse" onchange="previewImageReponse(event)">
-                                            </div>
-                                            <div class="mb-3 border">
-                                                <img id="preview-image-reponse" style="height: 200px; width: auto; object-fit: fill;" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Fausse Reponse</label>
-                                                <input type="text" class="form-control mb-2" id="basic-default-fullname" placeholder="Inserer la fausse reponse" name="classe_nom" />
-                                                
-                                            </div>
-                                            <div class="mb-3">
-                                                <a href="#" id="ajouter-image">
-                                                    <i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une image
-                                                </a>
-                                                <input type="file" class="d-none" id="input-image" onchange="previewImage(event)">
-                                            </div>
-                                            <div class="mb-3 border">
-                                                <img id="preview-image" style="height: 200px; width: auto; object-fit: fill;" />
-                                            </div>
-                                            <div class="mb-3">
-                                                <p class="text-center"><a href="#" class="text-warning" style="font-size: 20px; font-weight: bold ;"><i class="menu-icon tf-icons bx bx-add-to-queue"></i> Ajouter une autre fausse reponse</a></p>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="basic-default-fullname">Autres</label>
-                                                <div class="form-group">
-                                                    <input type="checkbox"> Pas de reponse <br>
-                                                    <input type="checkbox"> Toutes les reponses sont justes <br>
-                                                    <input type="checkbox"> Aucune de ces reponses n'est juste <br>
-                                                    <input type="checkbox"> Autre reponse <br>
-                                                </div>
+                                                <label class="form-label" for="basic-default-fullname">Autres</label><br>
+                                                <input type="checkbox autre" value="Pas de reponse"> Pas de reponse<br>
+                                                <input type="checkbox autre" value="Aucune de ces reponses n'est juste"> Aucune de ces reponses n'est juste<br>
+                                                <input type="checkbox autre" value="Toutes ces reponses sont valables"> Toutes ces reponses sont valables<br>
                                             </div> -->
-                                            
 
-                                                <!-- Icon here -->
-                                            <button type="submit" class="btn btn-primary">Enregistrer</button>
 
-                                            </form>
+                                            <!-- Icon here -->
+                                            <a class="btn btn-primary" id="enregistrer" href="#">Enregistrer</a>
                                         </div>
 
                                     </div>
                                 </div>
-                                
+
+
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12 mb-4 order-0">
+                                <div class="card">
+                                    <div class="table-responsive text-nowrap">
+                                        <table class="table">
+                                            <thead class="table-light">
+                                                <tr>
+                                                    <th>Categorie</th>
+                                                    <th>Classe</th>
+                                                    <th>Mode</th>
+                                                    <th>Question</th>
+                                                    <th>Reponses</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="table-border-bottom-0" id="tbody-question">
+                                                <?php for ($q = 0; $q < count($questions); $q++) : ?>
+                                                    <tr>
+                                                        <td><?php echo $questions[$q]->categorie_nom; ?></td>
+                                                        <td><?php echo $questions[$q]->classe_nom; ?></td>
+                                                        <td><?php echo $questions[$q]->mode_nom; ?></td>
+                                                        <td><?php echo $questions[$q]->reponses_question; ?></td>
+                                                        <td>
+                                                            <?php
+                                                            $d = json_decode($questions[$q]->reponses_contenu);
+                                                            for ($k = 0; $k < count($d); $k++) {
+                                                                echo '<span class="text-info">' . $d[$k][0] . '</span><span> : ' . $d[$k][1] . '</span><br>';
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <a class="badge bg-label-danger me-1" href="<?= base_url() ?>Questionnaire/supprimer/<?= $questions[$q]->reponses_id; ?>">Supprimer</a>
+                                                        </td>
+                                                    </tr>
+
+
+                                                <?php endfor; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
@@ -273,44 +276,112 @@
             <!-- Page JS -->
             <script src="<?= base_url(); ?>public/assets/js/dashboards-analytics.js"></script>
             <script>
-                $(document).on('click','#ajouter-image',function() {
-                    $('#input-image').click() ;
-                }) ;
-                $(document).on('click','#ajouter-image-reponse',function() {
-                    $('#input-image-reponse').click() ;
-                }) ;
-                const previewImage = (event) => {
-                    const imageFiles = event.target.files ;
-                    const imageFilesLength = imageFiles.length ;
-                    if(imageFilesLength > 0) {
-                        const imgSrc = URL.createObjectURL(imageFiles[0]) ;
-                        const imagePreviewElement = document.getElementById('preview-image') ;
-                        imagePreviewElement.src = imgSrc ;
+                $(document).ready(function() {
+                    const URL = 'http://localhost/cap-admin/';
+                    $('#btn-ajouter').click(function(e) {
+                        if ($('#reponses').val() != '') {
+                            e.preventDefault();
+                            var reponse = $('#reponses').val();
+                            $('#reponses').val('');
+                            $('#reponses').focus();
+                            $("#list-view").append(`
+                            <li class='list-view-item'>
+                                <input type="checkbox" class="mr-2 check-true" etat='off'>
+                                <span class="content">${reponse}</span>
+                                <span class="close">x</span>
+                            </li>
+                        `);
+                            // close button:
+                            var closebtns = document.getElementsByClassName("close");
+                            var i;
+
+                            // Loop through the elements, and hide the parent, when clicked on
+                            for (i = 0; i < closebtns.length; i++) {
+                                closebtns[i].addEventListener("click", function(e) {
+                                    e.stopImmediatePropagation();
+                                    this.parentElement.remove();
+                                });
+                            }
+
+                            // Check true reponse:
+                            var checkTrue = document.getElementsByClassName('check-true');
+                            for (j = 0; j < checkTrue.length; j++) {
+                                checkTrue[j].addEventListener("click", function(e) {
+                                    e.stopImmediatePropagation();
+                                    if (this.getAttribute('etat') == 'off') {
+                                        this.setAttribute('etat', 'on');
+                                    } else if (this.getAttribute('etat') == 'on') {
+                                        this.setAttribute('etat', 'off');
+                                    }
+                                });
+                            }
+                        } else {
+                            alert('remplir le champ inserer svp !')
+                        }
+                    })
+
+
+                    $(document).on('click', '#enregistrer', function() {
+
+                        var liste_reponse = document.getElementsByClassName('list-view-item');
+                        var datas = [];
+                        for (let i = 0; i < liste_reponse.length; i++) {
+                            var data_chunck = [];
+                            var first_son = liste_reponse[i].children[0];
+                            var middle_son = liste_reponse[i].children[1];
+                            if (first_son.getAttribute('etat') == 'on') {
+                                data_chunck.push('Vrai');
+                                data_chunck.push(middle_son.innerText);
+                            } else {
+                                data_chunck.push('Faux');
+                                data_chunck.push(middle_son.innerText);
+                            }
+
+                            datas.push(data_chunck);
+                        }
+
+
+                        $.ajax({
+                                url: URL + 'Questionnaire/enregistrer',
+                                type: 'post',
+                                data: {
+                                    'categorie_id': $('#categorie').val(),
+                                    'classe_id': $('#classe').val(),
+                                    'mode_id': $('#mode').val(),
+                                    'question': $('#question').val(),
+                                    'reponses': JSON.stringify(datas),
+                                    //    'autres': myAutres , 
+                                },
+                            })
+                            .done(function(data) {
+                                if (data.trim() == 'success') {
+                                    $('#question').val('');
+                                    $('.list-view-item').remove();
+                                    $('#question').focus();
+                                    $.ajax({
+                                        url: URL + 'Questionnaire/getAllQuestions',
+                                        type: 'post',
+                                        data: {},
+                                    })
+                                    .done(function(data) {
+                                        $("#tbody-question").html(data);
+                                    })
+                                }
+                            })
+                    })
+
+
+                    function showQuestionnaires() {
+                        $.ajax({
+                                url: URL + 'Questionnaire/getAllQuestions',
+                                type: 'post',
+                                data: {},
+                            })
+                            .done(function(data) {
+                                $("#tbody-question").html(data);
+                            })
                     }
-                }
-                const previewImageReponse = (event) => {
-                    const imageFiles = event.target.files ;
-                    const imageFilesLength = imageFiles.length ;
-                    if(imageFilesLength > 0) {
-                        const imgSrc = URL.createObjectURL(imageFiles[0]) ;
-                        const imagePreviewElement = document.getElementById('preview-image-reponse') ;
-                        imagePreviewElement.src = imgSrc ;
-                    }
-                }
-
-
-
-
-                // close button:
-                var closebtns = document.getElementsByClassName("close");
-                var i;
-
-                // Loop through the elements, and hide the parent, when clicked on
-                for (i = 0; i < closebtns.length; i++) {
-                closebtns[i].addEventListener("click", function() {
-                    this.parentElement.remove() ;
-                });
-                }
+                })
             </script>
 </body>
 
